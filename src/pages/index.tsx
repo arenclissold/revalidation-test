@@ -5,7 +5,11 @@ import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+interface Props {
+  randomNumber: number
+}
+
+export default function Home({ randomNumber }: Props) {
   return (
     <>
       <Head>
@@ -16,10 +20,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
+          <p>{randomNumber}</p>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -120,4 +121,12 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export const getStaticProps = () => {
+  return {
+    props: {
+      randomNumber: Math.floor(Math.random() * 100)
+    }
+  }
 }
